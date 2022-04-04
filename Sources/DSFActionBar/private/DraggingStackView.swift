@@ -44,6 +44,8 @@ internal class DraggingStackView: NSStackView {
 	/// Can the stack view be reordered
 	var canReorder = true
 
+	var draggingBackgroundColor: NSColor =  NSColor.underPageBackgroundColor
+	
 	/// Delegate callback when the stackview finishes reordering
 	weak var dragDelegate: DraggingStackViewProtocol?
 
@@ -98,7 +100,7 @@ internal class DraggingStackView: NSStackView {
 		let container = CALayer()
 		container.frame = layer.bounds
 		container.zPosition = 1
-		container.backgroundColor = NSColor.underPageBackgroundColor.cgColor
+		container.backgroundColor = draggingBackgroundColor.cgColor
 
 		cached
 			.filter { $0.view !== view }
