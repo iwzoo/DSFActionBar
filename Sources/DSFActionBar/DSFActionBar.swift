@@ -28,6 +28,14 @@ internal let DefaultMoreTooltip = NSLocalizedString("More actions…", comment: 
 
 @IBDesignable
 public class DSFActionBar: NSView {
+	
+    public var draggingBackgroundColor: NSColor = NSColor.underPageBackgroundColor {
+        didSet {
+            self.stack.draggingBackgroundColor = self.draggingBackgroundColor
+        }
+    }
+	
+	
 	// MARK: Delegates
 
 	/// If set, the delegate receives callbacks when the items are reordered in the action bar
