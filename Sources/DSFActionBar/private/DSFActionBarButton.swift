@@ -30,7 +30,7 @@ public class DSFActionBarButton: NSButton {
 
 	var parent: DSFActionBarProtocol!
 
-	var actionBlock: (() -> Void)? {
+    public var actionBlock: (() -> Void)? {
 		didSet {
 			self.action = nil
 			self.target = nil
@@ -70,7 +70,7 @@ public class DSFActionBarButton: NSButton {
 
 	// MARK: - Sizing
 
-	override var intrinsicContentSize: NSSize {
+	public override var intrinsicContentSize: NSSize {
 		var sz = super.intrinsicContentSize
 		if #available(macOS 11, *) {
 			sz.width -= 4
@@ -78,7 +78,7 @@ public class DSFActionBarButton: NSButton {
 		return sz
 	}
 
-	override var controlSize: NSControl.ControlSize {
+	public override var controlSize: NSControl.ControlSize {
 		get {
 			super.controlSize
 		}
@@ -94,7 +94,7 @@ public class DSFActionBarButton: NSButton {
 		self.needsDisplay = true
 	}
 
-	override func viewDidMoveToWindow() {
+    public override func viewDidMoveToWindow() {
 		super.viewDidMoveToWindow()
 
 		self.updateMenuStatus()
@@ -118,11 +118,11 @@ public class DSFActionBarButton: NSButton {
 		r.fill()
 	}
 
-	override func updateLayer() {
+    public override func updateLayer() {
 		self.buttonLayer.cornerRadius = 4
 	}
 
-	override var state: NSControl.StateValue {
+    public override var state: NSControl.StateValue {
 		get {
 			return super.state
 		}
@@ -185,7 +185,7 @@ public class DSFActionBarButton: NSButton {
 		}
 	}
 
-	override func mouseEntered(with _: NSEvent) {
+    public override func mouseEntered(with _: NSEvent) {
 		guard self.isEnabled else { return }
 		// Highlight with quaternary label color
 
@@ -201,7 +201,7 @@ public class DSFActionBarButton: NSButton {
 		self.mouseInside = true
 	}
 
-	override func mouseExited(with _: NSEvent) {
+    public override func mouseExited(with _: NSEvent) {
 
 		if (self.state == .on) {
 			self.buttonLayer.backgroundColor = self.activeColor.cgColor
@@ -212,13 +212,13 @@ public class DSFActionBarButton: NSButton {
 		self.mouseInside = false
 	}
 
-	override func mouseDown(with _: NSEvent) {
+    public override func mouseDown(with _: NSEvent) {
 		guard self.isEnabled else { return }
 		self.buttonLayer.backgroundColor = self.pressedColor.cgColor
 		self.mouseIsDown = true
 	}
 
-	override func mouseDragged(with event: NSEvent) {
+    public override func mouseDragged(with event: NSEvent) {
 		let location = convert(event.locationInWindow, from: nil)
 		if self.mouseDragLocationX == nil {
 			self.mouseDragLocationX = location.x
@@ -234,7 +234,7 @@ public class DSFActionBarButton: NSButton {
 		}
 	}
 
-	override func mouseUp(with _: NSEvent) {
+    public override func mouseUp(with _: NSEvent) {
 		if self.mouseInside {
 			self.buttonLayer.backgroundColor = self.hoverColor.cgColor
 			if let t = self.target {
@@ -258,17 +258,17 @@ public class DSFActionBarButton: NSButton {
 		self.mouseIsDown = false
 	}
 
-	override func rightMouseDown(with _: NSEvent) {
+    public override func rightMouseDown(with _: NSEvent) {
 		self.parent?.rightClick(for: self)
 	}
 }
 
 extension DSFActionBarButton: DSFActionBarItem {
-	var position: CGRect {
+    public var position: CGRect {
 		return self.parent.rect(for: self)
 	}
 
-	override var menu: NSMenu? {
+    public override var menu: NSMenu? {
 		get {
 			super.menu
 		}
@@ -282,7 +282,7 @@ extension DSFActionBarButton: DSFActionBarItem {
 		}
 	}
 
-	var disabled: Bool {
+    public var disabled: Bool {
 		get {
 			return !super.isEnabled
 		}
@@ -291,7 +291,7 @@ extension DSFActionBarButton: DSFActionBarItem {
 		}
 	}
 
-	func setAction(_ action: Selector, for target: AnyObject) {
+    public func setAction(_ action: Selector, for target: AnyObject) {
 		self.action = action
 		self.target = target
 		self.menu = nil
