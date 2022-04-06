@@ -107,9 +107,9 @@ public class DSFActionBarButton: NSButton {
 			self.imagePosition = .imageRight
 		}
 		else {
-			self.image = nil
-			self.imageScaling = .scaleNone
-			self.imagePosition = .imageRight
+// 			self.image = nil
+// 			self.imageScaling = .scaleNone
+// 			self.imagePosition = .imageRight
 		}
 	}
 
