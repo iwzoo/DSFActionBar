@@ -25,7 +25,7 @@
 import AppKit
 
 @IBDesignable
-class DSFActionBarButton: NSButton {
+public class DSFActionBarButton: NSButton {
 	// MARK: - Init and setup
 
 	var parent: DSFActionBarProtocol!
