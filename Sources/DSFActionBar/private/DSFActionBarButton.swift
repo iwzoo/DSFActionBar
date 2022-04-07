@@ -164,23 +164,27 @@ public class DSFActionBarButton: NSButton {
 	private var mouseInside: Bool = false
 	private var mouseDragLocationX: CGFloat?
 
+	public var hoverColorAlpha: CGFloat = 0.1
+    	public var pressedColorAlpha: CGFloat = 0.25
+    	public var activeColorAlpha: CGFloat = 0.2
+
 	var hoverColor: NSColor {
 		return UsingEffectiveAppearance(of: self) {
-			let hc = parent.backgroundColor.flatContrastColor().withAlphaComponent(0.1)
+			let hc = parent.backgroundColor.flatContrastColor().withAlphaComponent(hoverColorAlpha)
 			return hc
 		}
 	}
 
 	var pressedColor: NSColor {
 		return UsingEffectiveAppearance(of: self) {
-			let hc = parent.backgroundColor.flatContrastColor().withAlphaComponent(0.25)
+			let hc = parent.backgroundColor.flatContrastColor().withAlphaComponent(pressedColorAlpha)
 			return hc
 		}
 	}
 
 	var activeColor: NSColor {
 		return UsingEffectiveAppearance(of: self) {
-			let hc = parent.backgroundColor.flatContrastColor().withAlphaComponent(0.2)
+			let hc = parent.backgroundColor.flatContrastColor().withAlphaComponent(activeColorAlpha)
 			return hc
 		}
 	}
