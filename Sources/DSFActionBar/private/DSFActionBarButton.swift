@@ -137,6 +137,31 @@ public class DSFActionBarButton: NSButton {
 		}
 	}
 
+    // MARK: - title
+    private func updateTitle() {
+        if let color = titleColor, let font = font  {
+            let style = NSMutableParagraphStyle()
+            style.alignment = .center
+            let attr = [
+                NSAttributedString.Key.foregroundColor: color,
+                NSAttributedString.Key.font: font,
+                NSAttributedString.Key.paragraphStyle: style,
+            ] as [NSAttributedString.Key: Any]
+            let attrStr = NSAttributedString(string: self.title, attributes: attr)
+            self.attributedTitle = attrStr
+        }
+    }
+    public var titleColor: NSColor? {
+        didSet {
+            self.updateTitle()
+        }
+    }
+    public override var title: String {
+        didSet {
+            self.updateTitle()
+        }
+    }
+
 	// MARK: - Tracking Area
 
 	private var trackingArea: NSTrackingArea?
