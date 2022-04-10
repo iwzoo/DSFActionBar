@@ -93,6 +93,13 @@ public extension DSFActionBar {
 	override func layout() {
 		super.layout()
 
+        if !hasMoreButton {
+            self.buttonItems.forEach{ item in
+                item.isHidden = false
+            }
+            return 
+        }
+		
 		var b = self.bounds
 		b.size.width -= 12
 		self.buttonItems.forEach { item in
