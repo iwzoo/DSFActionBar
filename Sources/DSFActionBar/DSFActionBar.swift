@@ -30,7 +30,7 @@ internal let DefaultMoreTooltip = NSLocalizedString("More actions…", comment: 
 public class DSFActionBar: NSView {
     public var hasMoreButton: Bool = true {
         didSet  {
-            self.moreButton?.isHidden = true
+            self.moreButton.isHidden = true
         }
     }
 	
