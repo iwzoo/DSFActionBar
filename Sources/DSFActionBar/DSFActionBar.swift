@@ -28,6 +28,11 @@ internal let DefaultMoreTooltip = NSLocalizedString("More actions…", comment: 
 
 @IBDesignable
 public class DSFActionBar: NSView {
+    public var hasMoreButton: Bool = true {
+        didSet  {
+            self.moreButton?.isHidden = true
+        }
+    }
 	
     public var draggingBackgroundColor: NSColor = NSColor.underPageBackgroundColor {
         didSet {
